@@ -15,7 +15,7 @@ def load_model(path):
         nn.Linear(in_features=312, out_features=64, bias=True),
         nn.Linear(in_features=64, out_features=1, bias=True)
     )
-    model.load_state_dict(torch.load(path, weights_only=True))
+    model.load_state_dict(torch.load(path, weights_only=True, map_location=torch.device('cpu')))
     model.eval()
     return model, tokenizer
 
