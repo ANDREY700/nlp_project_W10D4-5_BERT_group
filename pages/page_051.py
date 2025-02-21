@@ -38,12 +38,35 @@ st.header(" Немного про модель ")
 st.write('Показатели при обучении модели (не в эпохах, а в шагах)')
 st.image('images/model_metric.png')
 
+st.header('Примеры работы модели')
+col13, col14 = st.columns(2)
+with col14:
+    st.image('images/model_temp_1.png', width=500, caption='')
+with col13:
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 20px; font-size: 15px; font-weight: bold;'>Адекватная температура и даже немного ритмичный и жесткий текст.</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+
+col15, col16 = st.columns(2)
+with col15:
+    st.image('images/model_temp_0.png', width=500, caption='')
+with col16:
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 40px; font-size: 15px; font-weight: bold;'>Очень жесткий текст (для понимания, ага) и высокая температура.</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+
 st.header('На чем обучали модель?')
 
 col1, col2 = st.columns(2)
 with col1: 
     st.subheader('Примеры текста:')
-    st.image('images/atl_example.png', width=400, caption='') 
+    st.image('images/atl_example.png', width=400, caption='')
 
 with col2:
     st.markdown(
