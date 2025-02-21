@@ -207,7 +207,7 @@ def model_run(model, table, number, set, time_before, x_BOW):
 
 
 def models_apply2(text):
-    output = BERT_model_apply(model_BERT, text)
+    #output = BERT_model_apply(model_BERT, text)
     #return model_list[13]
-    return output
+    return ''
 
