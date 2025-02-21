@@ -1,60 +1,117 @@
 import streamlit as st
 
-st.header("Детекция лиц с помощью YOLO11m")
-st.header("ℹ️ face_yolo11m.pt: Информация о модели")
+st.header("Генерация текста с помощью GPT3-medium-based-on-GPT2")
+st.header("ℹ️ Информация о модели")
 
 st.divider()
 
-epochs = 10 
-train_size = 13432
-val_size = 3347
+epochs = 8.3
+train_size = 8341   # строка
+word_size = 44264  # слова
+timer = 4.5
 
 
 st.header(" Основные параметры обучения")
-st.write(f" **Число эпох:** `{epochs}`")
-st.write(f" **Обучающая выборка:** `{train_size}` изображений")
-st.write(f" **Валидационная выборка:** `{val_size}` изображений")
-#st.write(f" **Тестовая выборка:** `{test_size}` изображений")
-st.markdown(" **Датасет:** [kaggle.com: Набор данных для обнаружения лиц]")
+st.write(f'**Обучала на текстовом документе с текстами песен**')
+st.markdown(
+    f"<h3 style='text-align: center; font-size:24px;'>Число эпох: <span style='color:#7c2ec9;'>{epochs}</span></h3>", 
+    unsafe_allow_html=True
+)
+st.markdown(
+    f"<h3 style='text-align: center; font-size:24px;'>Число строк: <span style='color:#7c2ec9;'>{train_size}</span></h3>", 
+    unsafe_allow_html=True
+)
+st.markdown(
+    f"<h3 style='text-align: center; font-size:24px;'>Число слов: <span style='color:#7c2ec9;'>{word_size}</span></h3>", 
+    unsafe_allow_html=True
+)
+st.markdown(
+    f"<h3 style='text-align: center; font-size:24px;'>Затраченное время: <span style='color:#7c2ec9;'>{timer} часа</span></h3>", 
+    unsafe_allow_html=True
+)
+st.markdown(" **Модель на hugging-face:** [вот сюда жми ага](https://huggingface.co/RenaTheDv/rugpt-medium-based-on-gpt2-test1)")
 
 st.divider()
 
-st.header(" Метрики модели")
+st.header(" Немного про модель ")
+
+st.write('Показатели при обучении модели (не в эпохах, а в шагах)')
+st.image('images/model_metric.png')
+
+st.header('На чем обучали модель?')
 
 col1, col2 = st.columns(2)
-with col1:
-    st.subheader(" F1_curve") 
-    st.image('images/F1_curve_face_yolo11m.png', caption='График F1_curve') 
+with col1: 
+    st.subheader('Примеры текста:')
+    st.image('images/atl_example.png', width=400, caption='') 
 
 with col2:
-    st.subheader(" PR-кривая") 
-    st.image('images/PR_curve_face_yolo11m.png', caption='PR-кривая') 
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 85px; font-size: 15px; font-weight: bold;'>Было принято решение начать с текстов такого исполнителя, как ATL, поскольку во многих его песнях создавался некий свой мир, который всегда был мне интересен.</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
 
+col3, col4 = st.columns(2)
+with col3:
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 125px; font-size: 15px; font-weight: bold;'>Пример был взять из данного альбома. Помимо него, взяты были ВСЕ песни исполнителя (парсинг сайта с текстами - это нечто)...</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+with col4:
+    st.image('images/atl_image.png')
 
-st.subheader(" Precision & Recall")
-col1, col2 = st.columns(2)
-with col1:
-    st.image('images/P_curve_face_yolo11m.png', caption=" Precision") 
-with col2:
-    st.image('images/R_curve_face_yolo11m.png', caption=" Recall") 
+col5, col6 = st.columns(2)
+with col5: 
+    st.image('images/boul_example.png', width=400, caption='') 
 
-#Матрица ошибок (опционально)
-st.subheader(" Confusion Matrix")
-col1, col2 = st.columns(2)
-with col1:
-    st.image('images/confusion_matrix_normalized_face_yolo11m.png', caption="✅ Нормализованная версия") 
-with col2:
-    st.image('images/confusion_matrix_face_yolo11m.png', caption=" Базовая версия") 
+with col6:
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 25px; font-size: 15px; font-weight: bold;'>164 песни ATL - именно столько песен у исполнителя без ремиксов - необходимо было дополнить. Был выбран, в том числе, и исполнитель Boulevard Depo - c его мрачными текстами.</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
 
-st.divider()
+col7, col8 = st.columns(2)
+with col7:
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 125px; font-size: 15px; font-weight: bold;'>Пример был взять из данного альбома. Помимо него, было взято еще около 15 песен...</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+with col8:
+    st.image('images/boul_image.jpg')
 
-st.header(" Примеры работы модели")
+col9, col10 = st.columns(2)
+with col9: 
+    st.image('images/miya_example.png', width=400, caption='') 
 
-st.image('images/face_yolo11m_1.jpg', caption='Результат Детекция лиц') 
-st.image('images/face_yolo11m_11.jpg', caption='Результат Детекция лиц') 
+with col10:
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 105px; font-size: 15px; font-weight: bold;'>Решила разбавить серьезные смыслы кальянным репом - Мияги и Эндшпиль мне в помощь.</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
 
-st.image('images/face_yolo11m_22.jpg', caption='Результат Детекция лиц') 
-st.image('images/face_yolo11m_3.jpg', caption='Результат Детекция лиц')
+col11, col12 = st.columns(2)
+with col11:
+    st.markdown(
+        "<div style='display: flex; align-items: center; height: 100%;'>"
+        "<p style='padding-top: 125px; font-size: 15px; font-weight: bold;'>Пример был взять из данного альбома. Помимо него, было взято еще около 10 кальянных песен...</p>"
+        "</div>",
+        unsafe_allow_html=True
+    )
+with col12:
+    st.image('images/miya_image.jpg')
 
-st.image('images/face_yolo11m_88.jpg', caption='Результат с размытием 8') 
-st.image('images/face_yolo11m_55.jpg', caption='Результат с размытием 5') 
+st.header('Общие выводы')
+st.write('Модель обучалась очень долго - большое количество времени ушло на поиск возможности обучать модель в течение 4 часов. При первом обучении Google Colab просто вылетел на 1,5 часах :)')
+st.write('Модели явно не хватает больше времени на обучение и больше текстов - для этого нужно немного больше. Поэтому она пока не может писать полноценные тексты с адекватным смыслом... Но она уже пишет лучше половины наших исполнителей.')
+st.header('Идеи для обновления модели')
+st.write('Сделать телеграм-бота, который принимает фразу и выдает текст. Поработать с обучением - сделать больший текстовый документ (минимум в два раза), найти больше мощностей и обучить повторно.')
