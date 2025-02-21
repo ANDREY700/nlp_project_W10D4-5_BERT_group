@@ -16,7 +16,7 @@ import pandas as pd
 page01 = st.Page("pages/page_01.py", title = 'Оглавление ->')
 
 page02 = st.Page("pages/page_02.py", title = 'Описание Проекта')
-page03 = st.Page("pages/page_03.py", title = '1. Классификация отзыва на поликлиники')
+page03 = st.Page("pages/page_03.py", title = '1. Классификация отзывов на поликлиники')
 page04 = st.Page("pages/page_031.py", title = ' - описание модели')
 page05 = st.Page("pages/page_04.py", title = '2. Оценка степени токсичности пользовательского сообщения')
 page06 = st.Page("pages/page_041.py", title = ' - описание модели')

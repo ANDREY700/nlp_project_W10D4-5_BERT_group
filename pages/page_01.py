@@ -17,7 +17,7 @@ with col1:
     st.image('images/NLP01.png', width=100)
 with col2:
     st.write('Страница 1')    
-    st.page_link("pages/page_03.py", label='Классификация отзыва на поликлиники')
+    st.page_link("pages/page_03.py", label='Классификация отзывов на поликлиники')
 with col3:
     st.page_link("pages/page_031.py", label='Описание модели')
 
